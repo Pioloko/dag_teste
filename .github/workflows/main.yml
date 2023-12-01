@@ -1,22 +1,23 @@
-name: Merge branches into hml
+name: Merge branches to hml
 
 on:
   push:
     branches:
-      - 'card-*'
+      - 'main' # Selecione a branch principal do seu repositório
 
 jobs:
-  merge:
+  merge-branches:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Merge changes
-        run: |
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git checkout main # ou outra branch onde deseja fazer o merge
-          git fetch origin $GITHUB_REF
-          git merge FETCH_HEAD --no-ff --no-edit
-          git push origin main # ou a branch de destino
+    - name: Merge branches
+      run: |
+        git config --global user.email "bedu.tech@bedu.tech"
+        git config --global user.name "NomeDesired"
+        for branch in $(git branch --format='%(refname:short)' | grep -E 'card-[0-9]+$'); do
+          git checkout hml
+          git merge "$branch" --no-edit --no-ff
+        done
+        git push origin hml
