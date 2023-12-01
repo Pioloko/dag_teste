@@ -1,4 +1,4 @@
-name: Merge branches to hml
+name: Merge card para hml
 
 on:
   push:
@@ -14,8 +14,8 @@ jobs:
 
     - name: Merge branches
       run: |
-        git config --global user.email "bedu.tech@bedu.tech"
-        git config --global user.name "NomeDesired"
+        git config --global user.email "ramon.piologo@hotmail.com"
+        git config --global user.name "Pioloko"
         for branch in $(git branch --format='%(refname:short)' | grep -E 'card-[0-9]+$'); do
           git checkout hml
           git merge "$branch" --no-edit --no-ff
