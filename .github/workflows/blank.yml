@@ -1,0 +1,24 @@
+name: Merge card para hml
+
+on:
+  push:
+    branches:
+      - 'main' # Selecione a branch principal do seu repositório
+      - 'card-*' # Adiciona o padrão para as branches que deseja mesclar
+
+jobs:
+  merge-branches:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Merge branches
+      run: |
+        git config --global user.email "ramon.piologo@hotmail.com"
+        git config --global user.name "Pioloko"
+        for branch in $(git branch --format='%(refname:short)' | grep -E 'card-[0-9]+$'); do
+          git checkout hml
+          git merge "$branch" --no-edit --no-ff
+        done
+        git push origin hml
