@@ -3,7 +3,7 @@ name: Merge branches to hml
 on:
   push:
     branches:
-      - 'main' # Selecione a branch principal do seu repositório
+      - 'master' # Selecione a branch principal do seu repositório
 
 jobs:
   merge-branches:
