@@ -3,7 +3,7 @@ name: Merge card para hml
 on:
   push:
     branches:
-      - 'master' # Selecione a branch principal do seu repositório
+      - 'main' # Selecione a branch principal do seu repositório
 
 jobs:
   merge-branches:
